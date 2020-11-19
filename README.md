@@ -30,7 +30,7 @@ browse to folder of the dockerfile and build image
 # e.g.
 docker build -t otree:1.0 .
 
-# if you do not have so much disk space, you could not use not store intermediate builds:
+# if you do not have so much disk space, you could not store (cache) intermediate builds:
 #docker build -t --no-cache otree:1.0 .
 ```
 
