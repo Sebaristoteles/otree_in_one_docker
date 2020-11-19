@@ -9,7 +9,11 @@ depends on
 TESTED ON A SERVER RUNNNIG UBUNTU 18.04
 
 ### 1. preparation
-1. copy all files from this repository into a directory of your choice
+1. copy all files from this repository into an empty directory of your choice
+	- e.g. if you have git installed, browse to your directory and: 
+```
+git clone https://github.com/Sebaristoteles/otree_in_one_docker.git .
+```
 2. copy your otree app folder into the same directory
 	- you can find examples here: https://github.com/oTree-org/oTree
 	- files: you need the typical files as in the folder following the link above
@@ -40,7 +44,7 @@ see all ports that are listening
 ```
 netstat -tulpn | grep LISTEN
 ```
-- choose a free port that will be the server port mapped to the container, e.g. 8000
+choose a free port that will be the server port mapped to the container, e.g. 8000
 
 
 
@@ -76,7 +80,7 @@ if you want to change your oTree app within an existing docker container, see fu
 
 
 ### 6. Using oTree directly on port
-- open the port in your shell
+open the port in your shell
 ```
 ufw status verbose
 ufw allow 8000
