@@ -75,7 +75,7 @@ if you want to change your oTree app within an existing docker container, see fu
 
 
 
-### 5. Using oTree directly on port
+### 6. Using oTree directly on port
 - open the port in your shell
 ```
 ufw status verbose
