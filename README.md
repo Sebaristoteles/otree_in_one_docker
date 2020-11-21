@@ -56,7 +56,7 @@ create docker container from image
 docker run -it -d -p 8000:8000 --name otree otree:1.0
 ```
 
-On the first start, the database is rest. On subsequent starts of the same container, the database is not touched.
+On the first start, the database is reset. On subsequent starts of the same container, the database is not touched.
 
 
 ### 5. (Optional) Resetting the database in the docker container
