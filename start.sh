@@ -5,8 +5,8 @@ source /root/.bashrc
 # start redis in background
 redis-server &
 
-# start postgres in background
-pg_ctlcluster 11 main start &
+# start postgres
+pg_ctlcluster 11 main start
 
 # wait for postgres to accept connections
 while ! nc -z 127.0.0.1 5432

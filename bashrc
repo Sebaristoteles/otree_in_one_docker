@@ -26,5 +26,5 @@
 export DATABASE_URL=postgres://otree_user:mydbpassword@0.0.0.0:5432/django_test
 export REDIS_URL=redis://localhost:6379
 export OTREE_ADMIN_PASSWORD=my_admin_password
-export OTREE_PRODUCTION=1
+#export OTREE_PRODUCTION=1
 export OTREE_AUTH_LEVEL=DEMO
