@@ -1,12 +1,25 @@
-# start first application
+#!/bin/bash
+# get environment
+source /root/.bashrc
+
+# start redis in background
 redis-server &
-P1=$!
-# start second application
+
+# start postgres in background
 pg_ctlcluster 11 main start &
-P2=$!
-# start third application
-#otree prodserver 8000 &
-#P3=$!
-# -> did not work starting this way (even not with shell script later, just from inside the container)
-wait $P1 $P2
-#$P3
+
+# wait for postgres to accept connections
+while ! nc -z 127.0.0.1 5432
+do
+  echo "Waiting for postgres..."
+  sleep 1 
+done
+
+# reset database only if it is the first time we start the container
+if [ ! -f "/home/.initdone" ]; then
+  echo "First run, resetting database"
+  /usr/local/bin/otree resetdb --noinput && touch /home/.initdone
+fi
+
+# start otree production server
+/usr/local/bin/otree runprodserver 8000

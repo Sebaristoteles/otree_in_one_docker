@@ -19,7 +19,7 @@ git clone https://github.com/Sebaristoteles/otree_in_one_docker.git .
 	- files: you need the typical files as in the folder following the link above
 	- folders: you need the folders "_static" and "_templates" and one of the example-folders with its content
 3. get your oTree-app folder ready
-	a) easy: name your oTree-app folder "otree" (placed in the same folder as the files from this github project)
+	a) easy: name your oTree-app folder "otree_docker" (placed in the same folder as the files from this github project)
 	b) open the Dockerfile and change "ENV OTREE_APP_FOLDER=..." to the name for your otree app folder (e.g. "my_app")
 - in the Dockerfile you can optionally change other ENV variables that all relate to postgres (more notes in Dockerfile)
 - in the Dockerfile you can optionally change the port that the otree prodserver will listen to later
@@ -56,10 +56,10 @@ create docker container from image
 docker run -it -d -p 8000:8000 --name otree otree:1.0
 ```
 
+On the first start, the database is rest. On subsequent starts of the same container, the database is not touched.
 
 
-### 5. start oTree in docker container
-(unfortunately not possible with dockerfile: if you know how, you are welcome to let me know)
+### 5. (Optional) Resetting the database in the docker container
 ```
 # enter the container
 docker exec -it otree /bin/bash
@@ -67,16 +67,8 @@ docker exec -it otree /bin/bash
 # reset database
 otree resetdb
 # -> confirm with y
-
-# start oTree server
-otree prodserver 8000
-
-# the shell now shows all things the oTree server does
-# -> start an new shell to operate further on your server
-# -> you can close the shell with oTree running, the prodserver will still run
 ```
 if you want to change your oTree app within an existing docker container, see further below
-
 
 
 ### 6. Using oTree directly on port
@@ -124,5 +116,5 @@ docker exec -u root -it otree sh -c 'exec rm -r *'
 # assuming you are in the mother-folder of your new oTree-app folder
 docker cp otree otree:/home
 ```
-after that you have to reset the database again and start the prodserver as explained in "start oTree in docker container"
+after that you have to reset the database again and start the prodserver.
 
