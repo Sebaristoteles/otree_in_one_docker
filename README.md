@@ -8,6 +8,9 @@ depends on
 
 TESTED ON A SERVER RUNNNIG UBUNTU 18.04
 
+**The following numerated steps ore required to get oTree running with your app.**
+Those steps without numeration are optional.
+
 ### 1. preparation
 1. copy all files from this repository into an empty directory of your choice
 	- e.g. if you have git installed, browse to your directory and: 
@@ -59,19 +62,8 @@ docker run -it -d -p 8000:8000 --name otree otree:1.0
 On the first start, the database is reset. On subsequent starts of the same container, the database is not touched.
 
 
-### 5. (Optional) Resetting the database in the docker container
-```
-# enter the container
-docker exec -it otree /bin/bash
 
-# reset database
-otree resetdb
-# -> confirm with y
-```
-if you want to change your oTree app within an existing docker container, see further below
-
-
-### 6. Using oTree directly on port
+### 5. Using oTree directly on port
 open the port in your shell
 ```
 ufw status verbose
@@ -96,6 +88,19 @@ https://otree-server-setup.readthedocs.io/en/latest/step5.html
 - e.g. from 'my.webpage/otree' to container
 - not working so far
 TBD
+
+
+
+
+### (Optional) Resetting the database in the docker container
+```
+# enter the container
+docker exec -it otree /bin/bash
+
+# reset database
+otree resetdb
+# -> confirm with y
+```
 
 
 
