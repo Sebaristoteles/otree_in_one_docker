@@ -10,8 +10,8 @@ RUN echo "Building Otree Image"
 # However, unlike ARG, they are also accessible by containers started from the final image. 
 # ENV values can be overridden when starting a container.
 
-
-ENV OTREE_APP_FOLDER=otree
+# cannot call it "otree", because otree won't let us create a project folder called "otree"
+ENV OTREE_APP_FOLDER=otree_docker
 
 
 # these variables all relate to the postgres database
@@ -38,7 +38,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
 
 # https://linuxize.com/post/how-to-install-python-3-7-on-ubuntu-18-04/
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
+    DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common netcat
 
 # deadsnake repository for multiple python versions on the system
 # RUN add-apt-repository ppa:deadsnakes/ppa
@@ -143,8 +143,8 @@ WORKDIR /home
 COPY bashrc bashrc
 RUN mv bashrc ~/.bashrc
 
-
 WORKDIR /home/otree
+
 # --------------------------------------------------- Expose ports and start processes
 # expose ports of otree, postgres and redis (necessary for the latter two?)
 EXPOSE $PORT_OF_OTREE 6379 5432
